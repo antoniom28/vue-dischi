@@ -5,13 +5,10 @@
     @filtra="filtraDischi" 
     />
     <div class="container">
-      <div
-        v-for="(item, index) in dischiFiltrati"
-        :key="index"
-        class="disco-singolo"
-      >
-        <Disco :info="item" />
-      </div>
+        <Disco :info="item"
+          v-for="(item, index) in dischiFiltrati"
+          :key="index"
+         />
     </div>
   </section>
   <Loader v-else />
@@ -76,13 +73,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/style/partials/variables.scss";
-
-.disco-singolo {
-  background-color: $main_color;
-  width: 200px;
-  min-height: 300px;
-  margin-bottom: 20px;
-}
 
 div.container {
   width: 80%;

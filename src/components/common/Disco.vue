@@ -20,11 +20,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../assets/style/partials/variables.scss";
+
 div.container-disco{
+    background-color: $main_color;
     text-align: center;
-    width: 80%;
-    margin: 0 auto;
-    padding: 15px 0;
+    width: 200px;
+    min-height: 300px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
 
     div,h3{
         margin: 15px 0;

@@ -86,7 +86,6 @@ span{
 .container-cerca{
     text-align: center;
     margin-top: 30px;
-    min-height: 50px;
 }
 
 select{
