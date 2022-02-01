@@ -43,23 +43,15 @@ export default {
     //inoltre filtra a seconda di cosa abbiamo scelto,
     //se per genere, o artista, anche se in questo caso c'è un brano per artista
     noRepeat() {
-      console.log("norepeat");
       let temp = [];
-      let error = false;
+      let error = [];
       for (let i = 0; i < this.dischiArr.length; i++) {
-        error = false;
-        for (let j = 0; j < temp.length; j++)
-          if(this.selectType == 'genere')
-            if (temp[j] == this.dischiArr[i].genre) {
-                error = true;
-                break;
-            }
-          else
-            if (temp[j] == this.dischiArr[i].author) {
-                error = true;
-                break;
-            }
-        if (!error){
+        if(this.selectType == 'genere')
+            error = temp.filter(str => str == this.dischiArr[i].genre);
+        else
+            error = temp.filter(str => str == this.dischiArr[i].author);
+
+        if (error.length == 0){
             if(this.selectType == 'genere')
                 temp.push(this.dischiArr[i].genre);
             else
