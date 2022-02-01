@@ -1,11 +1,17 @@
 <template>
-  <section v-if="!loading" class="container">
-    <div
-      v-for="(item, index) in dischiArray"
-      :key="index"
-      class="disco-singolo"
-    >
-      <Disco :info="item" />
+  <section v-if="!loading">
+    <Cerca 
+    :dischiArr="dischiArray" 
+    @filtra="filtraDischi" 
+    />
+    <div class="container">
+      <div
+        v-for="(item, index) in dischiFiltrati"
+        :key="index"
+        class="disco-singolo"
+      >
+        <Disco :info="item" />
+      </div>
     </div>
   </section>
   <Loader v-else />
@@ -15,21 +21,39 @@
 import axios from "axios";
 import Disco from "../common/Disco.vue";
 import Loader from "../common/Loader.vue";
+import Cerca from "../common/Cerca.vue";
 
 export default {
   name: "listaDischi",
   components: {
     Disco,
     Loader,
+    Cerca,
   },
   data() {
     return {
       apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
       dischiArray: [],
       loading: true,
+      inputOption: "",
+      inputType: "",
     };
   },
+  computed: {
+    dischiFiltrati() {
+      return this.dischiArray.filter((disc) => {
+        if(this.inputType == 'genere')
+          return disc.genre.includes(this.inputOption);
+        else
+          return disc.author.includes(this.inputOption);
+      });
+    },
+  },
   methods: {
+    filtraDischi(filt,type) {
+      this.inputOption = filt;
+      this.inputType = type;
+    },
     getDischi() {
       axios
         .get(this.apiUrl)
@@ -60,7 +84,7 @@ export default {
   margin-bottom: 20px;
 }
 
-section.container {
+div.container {
   width: 80%;
   margin: 70px auto;
   display: flex;

@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 export default {
   name: "Header",
 };
@@ -12,6 +13,7 @@ export default {
 
 <style lang="scss" scoped>
 @import "../../assets/style/partials/variables.scss";
+
 .container {
   background-color: $main_color;
 }
